@@ -51,6 +51,7 @@ module.exports = (app) => {
   });
 
   app.use('/', limiter);
+  app.use('/api/uploads', express.static(path.join(__dirname, 'uploads')));
   app.get('env') === 'development' &&
     app.use(morgan('combined', { stream: accessLogStream }));
   // Routes

@@ -15,7 +15,7 @@ const articleSchema = Schema(
     description: {
       type: String,
     },
-    image: [Object],
+    images: [Object],
     brand: {
       type: String,
     },

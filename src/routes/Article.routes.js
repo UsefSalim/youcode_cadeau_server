@@ -18,12 +18,12 @@ articleRoutes.get('/:_id', getUserArticles);
 
 articleRoutes.delete('/', deletAllController);
 
-articleRoutes.post('/add', upload.array('files', 4), addController);
+articleRoutes.post('/add', upload.array('images', 5), addController);
 
 articleRoutes.get('/one/:_id', getOneController);
 
 articleRoutes.delete('/:_id', deleteOneController);
 
-articleRoutes.put('/:_id', updateOneController);
+articleRoutes.put('/:_id', upload.array('images', 5), updateOneController);
 
 module.exports = articleRoutes;

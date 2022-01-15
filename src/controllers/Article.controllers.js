@@ -1,9 +1,9 @@
-const xelor = require('xelor');
+const xelor = require('../utils/utils');
 const Article = require('../models/Article.models');
 const { ArticleValidations } = require('../validations/Article.validations');
 
 exports.addController = async (req, res) => {
-  await xelor.add(req, res, Article, ArticleValidations);
+  await xelor.add(req, res, Article, ArticleValidations, null, req.files);
 };
 exports.getUserArticles = async (req, res) => {
   const { _id } = req.params;
@@ -38,7 +38,8 @@ exports.deleteOneController = async (req, res) => {
 };
 
 exports.updateOneController = async (req, res) => {
-  await xelor.update(req, res, Article, ArticleValidations);
+  console.log(req.files);
+  await xelor.update(req, res, Article, ArticleValidations, req.files);
 };
 
 exports.deletAllController = async (req, res) => {

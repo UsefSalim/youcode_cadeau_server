@@ -99,7 +99,7 @@ exports.add = async (
   }
   !multer
     ? (newElement = new Model({ ...req.body }))
-    : (newElement = new Model({ ...req.body, ...multer }));
+    : (newElement = new Model({ ...req.body, images: multer }));
   newElement = await newElement.save();
   return res.status(201).json(newElement);
 };
@@ -150,7 +150,7 @@ exports.update = (req, res, Model, validation = null, multer = null) => {
   multer
     ? Model.findByIdAndUpdate(
         { _id: req.params._id },
-        { $set: { ...req.body } },
+        { $set: { ...req.body, images: multer } },
         { new: true, useFindAndModify: true, upsert: true },
         (err, updated) => {
           !err ? res.status(200).json(updated) : res.status(400).json({ err });
@@ -158,7 +158,7 @@ exports.update = (req, res, Model, validation = null, multer = null) => {
       )
     : Model.findByIdAndUpdate(
         { _id: req.params._id },
-        { $set: { ...req.body, ...multer } },
+        { $set: { ...req.body } },
         { new: true, useFindAndModify: true, upsert: true },
         (err, updated) => {
           !err ? res.status(200).json(updated) : res.status(400).json({ err });
