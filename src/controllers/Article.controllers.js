@@ -15,12 +15,12 @@ exports.getAllFromCategorieController = async (req, res) => {
     ...rest
   } = req.query;
 
-  const data = await Article.find({ categorie: _id, ...rest })
+  const data = await Article.find({ user: _id, ...rest })
     .populate('categorie')
     .limit(+limit)
     .sort({ [orderBy]: order === 'DESC' ? -1 : 1 })
     .skip((page - 1) * limit);
-  const total = await Article.find({ categorie: _id, ...rest }).count();
+  const total = await Article.find({ user: _id, ...rest }).count();
   res.status(200).json({ data, total });
 };
 
