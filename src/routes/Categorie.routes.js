@@ -15,6 +15,6 @@ categorieRoutes.delete('/', deletAllController);
 categorieRoutes.post('/add', addController);
 categorieRoutes.get('/:_id', getOneController);
 categorieRoutes.delete('/:_id', deleteOneController);
-categorieRoutes.put('/:_id', updateOneController);
+categorieRoutes.patch('/:_id', updateOneController);
 
 module.exports = categorieRoutes;

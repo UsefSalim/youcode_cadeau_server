@@ -7,6 +7,8 @@ exports.registerValidations = (data) => {
     name: Joi.string().required().min(3).max(50).trim(),
     email: Joi.string().email().required().trim(),
     password: Joi.string().required().min(6),
+    role: Joi.string().valid('User', 'Seller'),
+    valid: Joi.boolean(),
   });
 
   return schema.validate(data);

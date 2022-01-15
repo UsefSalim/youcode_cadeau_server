@@ -5,7 +5,7 @@ const { ArticleValidations } = require('../validations/Article.validations');
 exports.addController = async (req, res) => {
   await xelor.add(req, res, Article, ArticleValidations);
 };
-exports.getAllFromCategorieController = async (req, res) => {
+exports.getUserArticles = async (req, res) => {
   const { _id } = req.params;
   const {
     page = 1,

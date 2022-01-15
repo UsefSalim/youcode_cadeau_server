@@ -214,12 +214,16 @@ exports.register = async (
     const ifUserExist = await this.ifExist(Model, finder);
     if (ifUserExist) return res.status(400).json(`${finder} existant `);
   }
+
+  if (Role === 'Seller') req.body.valid = false;
   const newUser = new Model({ ...req.body });
   newUser.password = await bcrypt.hash(
     req.body.password,
     await bcrypt.genSalt(10)
   );
-  if (Role) newUser.role = Role;
+  if (Role) {
+    newUser.role = Role;
+  }
   const savedUser = await newUser.save();
   if (savedUser) {
     const token = this.createToken({ id: newUser._id, role: newUser.role });

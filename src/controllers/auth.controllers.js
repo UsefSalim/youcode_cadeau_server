@@ -6,8 +6,8 @@ const {
 } = require('../validations/auth.validations');
 
 exports.registerController = async (req, res) => {
-  const { email } = req.body;
-  await register(req, res, User, registerValidations, { email });
+  const { email, role } = req.body;
+  await register(req, res, User, registerValidations, { email }, role);
 };
 exports.registerSellerController = async (req, res) => {
   const { email } = req.body;

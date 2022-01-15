@@ -16,6 +16,7 @@ const { verifIsAuthenticated } = require('./src/utils/utils');
 const error = require('./src/middlewares/errors.middleware');
 // routes
 const authRoutes = require('./src/routes/auth.routes');
+const userRoutes = require('./src/routes/User.routes');
 const categoriesRoutes = require('./src/routes/Categorie.routes');
 const articlesRoutes = require('./src/routes/Article.routes');
 
@@ -54,6 +55,7 @@ module.exports = (app) => {
     app.use(morgan('combined', { stream: accessLogStream }));
   // Routes
   app.use('/api/auth', authRoutes);
+  app.use('/api/user', userRoutes);
   app.use('/api/categories', categoriesRoutes);
   app.use('/api/articles', articlesRoutes);
 
