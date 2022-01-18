@@ -43,14 +43,14 @@ module.exports = (app) => {
   // # HTTP parameter pollation
   app.use(hpp());
   app.use(compression());
-  const limiter = rateLimit({
-    windowMs: 60 * 60 * 1000,
-    max: 5000,
-    headers: true,
-    message: 'You have exceeded the 5000 requests in 1 hrs limit!',
-  });
+  // const limiter = rateLimit({
+  //   windowMs: 60 * 60 * 1000,
+  //   max: 5000,
+  //   headers: true,
+  //   message: 'You have exceeded the 5000 requests in 1 hrs limit!',
+  // });
 
-  app.use('/', limiter);
+  // app.use('/', limiter);
   app.use('/api/uploads', express.static(path.join(__dirname, 'uploads')));
   app.get('env') === 'development' &&
     app.use(morgan('combined', { stream: accessLogStream }));

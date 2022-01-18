@@ -25,7 +25,21 @@ exports.getUserArticles = async (req, res) => {
 };
 
 exports.getAllController = async (req, res) => {
-  await xelor.getAll(res, Article);
+  const {
+    page = 1,
+    limit = 20,
+    orderBy = 'id',
+    order = 'DESC',
+    ...rest
+  } = req.query;
+
+  const data = await Article.find({ ...rest })
+    .populate('categorie')
+    .limit(+limit)
+    .sort({ [orderBy]: order === 'DESC' ? -1 : 1 })
+    .skip((page - 1) * limit);
+  const total = await Article.find({ ...rest }).count();
+  res.status(200).json({ data, total });
 };
 
 exports.getOneController = async (req, res) => {
